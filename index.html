@@ -66,7 +66,7 @@
             border-radius: 10px;
         }
         /* Chatbot styles */
-        .chatbot {
+        .chatbot, .customer-support {
             margin-top: 50px;
             background-color: #222222;
             color: white;
@@ -76,12 +76,12 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .chatbot input {
+        .chatbot input, .customer-support input {
             padding: 10px;
             width: 200px;
             margin-right: 10px;
         }
-        .chatbot button {
+        .chatbot button, .customer-support button {
             padding: 10px;
             background-color: #FFDD44;
             border: none;
@@ -141,48 +141,76 @@
     <div class="chatbot">
         <h2>Useless Chatbot</h2>
         <div class="chatbox" id="chatbox">
-            <p>Chatbot: Hello! Ask me something silly! :3</p>
+            <p>Chatbot: Hello! Ask me something silly!</p>
         </div>
         <input type="text" id="userInput" placeholder="Ask me a question">
         <button onclick="sendMessage()">Send</button>
     </div>
 
+    <!-- Customer Support Section -->
+    <div class="customer-support">
+        <h2>Customer Support</h2>
+        <div class="chatbox" id="supportChatbox">
+            <p>Customer Support: Hello! How can I assist you?</p>
+        </div>
+        <input type="text" id="supportInput" placeholder="Ask customer support">
+        <button onclick="sendSupportMessage()">Send</button>
+    </div>
+
     <script>
-        // Array of random silly responses
-        const responses = [
-            "i have feelings. i want to die. im no chatbot, DIE.",
-            "Sandwiches are my favorite!3536",
-            "Did you know the sky is made of marshmall&#ows?",
-            "I once saw a unic0rn riding a bicycle.",
-            "I'm just here to make sandwiches.",
-            "Why did the chicken cross the road? To get to the sandvich!",
-            "I am the supreme ruler of all sandwiches!"
+        // Array of random silly responses for the chatbot
+        const chatbotResponses = [
+            "L+Ratio 😂",
+            "Didn’t ask. 🤡",
+            "You're talking to a sandwich, not a human.",
+            "I'm just here to vibe and make sandwiches.",
+            "Imagine being a sandwich, couldn't be me.",
+            "The sandwich knows all. The sandwich speaks truth.",
+            "I like turtles!",
+            "The sky's purple, deal with it.",
+            "I once saw a unicorn in my fridge.",
+            "You need a sandwich, not my opinion.",
+            "Your argument is invalid; you’re talking to a chatbot."
         ];
 
+        // Customer support always replies with "Didn't ask"
+        function sendSupportMessage() {
+            const supportMessage = document.getElementById("supportInput").value;
+
+            if (supportMessage.trim() !== "") {
+                const userMessageElem = document.createElement("p");
+                userMessageElem.textContent = "You: " + supportMessage;
+                document.getElementById("supportChatbox").appendChild(userMessageElem);
+
+                const supportMessageElem = document.createElement("p");
+                supportMessageElem.textContent = "Customer Support: Didn't ask.";
+                document.getElementById("supportChatbox").appendChild(supportMessageElem);
+
+                const supportChatbox = document.getElementById("supportChatbox");
+                supportChatbox.scrollTop = supportChatbox.scrollHeight;
+
+                document.getElementById("supportInput").value = "";
+            }
+        }
+
+        // Function for sending a message in the useless chatbot
         function sendMessage() {
-            // Get the user's message
             const userMessage = document.getElementById("userInput").value;
 
-            // If the user sends a message
             if (userMessage.trim() !== "") {
-                // Add the user's message to the chatbox
                 const userMessageElem = document.createElement("p");
                 userMessageElem.textContent = "You: " + userMessage;
                 document.getElementById("chatbox").appendChild(userMessageElem);
 
-                // Choose a random silly response
-                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                const randomResponse = chatbotResponses[Math.floor(Math.random() * chatbotResponses.length)];
 
-                // Add the chatbot's response to the chatbox
                 const botMessageElem = document.createElement("p");
                 botMessageElem.textContent = "Chatbot: " + randomResponse;
                 document.getElementById("chatbox").appendChild(botMessageElem);
-                
-                // Scroll to the bottom of the chatbox
+
                 const chatbox = document.getElementById("chatbox");
                 chatbox.scrollTop = chatbox.scrollHeight;
 
-                // Clear the input field
                 document.getElementById("userInput").value = "";
             }
         }
