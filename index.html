@@ -5,28 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heavy's one website. SANDVICH</title>
     <style>
-        body {
+        body, h1, h2, p, input, button {
             font-family: "Papyrus", cursive, sans-serif;
+        }
+        body {
             background-color: #444444;
             text-align: center;
             padding: 50px;
-            cursor: url("https://i.imgur.com/ZWb8oFX.png"), auto;
         }
         h1 { color: #000000; }
-        .bsod, .delete-btn, .shake-btn {
-            margin: 20px;
-            padding: 15px;
-            background-color: red;
+        img {
+            width: 300px;
+            border: 5px solid black;
+            border-radius: 20px;
+        }
+        .about, .chatbot, .customer-support {
+            background-color: #222222;
             color: white;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 30px auto;
+        }
+        .chatbox {
+            background-color: #333333;
+            height: 200px;
+            overflow-y: scroll;
+            padding: 10px;
+            border-radius: 10px;
         }
         a {
             color: yellow;
             font-size: 20px;
-            display: block;
-            margin-top: 20px;
             text-decoration: underline;
             cursor: pointer;
         }
@@ -35,35 +45,22 @@
 <body>
     <h1>Welcome to the sandvich Page!</h1>
     <p>so cool that cool LETTUCE LETTUCE 😱</p>
+    <img src="https://i.imgur.com/aK3Oip3.jpeg" alt="mmm sandvich">
     
-    <button class="shake-btn" onclick="shakeScreen()">Shake Screen</button>
-    <button class="delete-btn" onclick="document.body.innerHTML = '<h1>Website has been deleted.</h1>'">DELETE WEBSITE</button>
-    <button class="bsod" onclick="document.body.innerHTML = '<h1 style=\'color: white; background: blue; font-size: 50px;\'>A critical error has occurred. Please restart your computer.</h1>'">Fix Lag</button>
+    <p><a href="#" onclick="startVirusAlert()">🔥 FREE ROBUX CLICK HERE 🔥</a></p>
     
-    <!-- Free Robux link -->
-    <a onclick="triggerVirus()">🔥 Free Robux Here! 🔥</a>
+    <footer>
+        <p>Produced by stupid assholes Corp 6969</p>
+    </footer>
     
     <script>
-        function triggerVirus() {
+        function startVirusAlert() {
             setTimeout(() => {
                 alert("⚠️ Windows has detected a virus. Please call 1-800-NOT-A-SCAM");
             }, 5000);
-            
             setTimeout(() => {
                 document.body.innerHTML = '<h1 style="color: white; background: blue; font-size: 50px;">A critical error has occurred. Please restart your computer.</h1>';
             }, 20000);
-        }
-
-        window.onbeforeunload = function() {
-            return "Wait! You forgot to claim your free sandwich!";
-        };
-        
-        function shakeScreen() {
-            let interval = setInterval(() => {
-                document.body.style.marginLeft = Math.random() * 10 + "px";
-                document.body.style.marginTop = Math.random() * 10 + "px";
-            }, 100);
-            setTimeout(() => clearInterval(interval), 3000);
         }
     </script>
 </body>
