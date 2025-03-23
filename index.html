@@ -5,62 +5,257 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heavy's one website. SANDVICH</title>
     <style>
+        /* Set Papyrus as the font for EVERYTHING */
         body, h1, h2, p, input, button {
             font-family: "Papyrus", cursive, sans-serif;
         }
+        
         body {
             background-color: #444444;
             text-align: center;
             padding: 50px;
         }
-        h1 { color: #000000; }
+        h1 {
+            color: #000000;
+        }
         img {
             width: 300px;
             border: 5px solid black;
             border-radius: 20px;
         }
-        .about, .chatbot, .customer-support {
+        /* About Us Section */
+        .about {
+            background-color: #444444;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+        .about h2 {
+            color: #FFDD44;
+        }
+        .about p {
+            font-size: 18px;
+        }
+        /* Footer with funny text */
+        footer {
+            margin-top: 50px;
+            font-size: 16px;
+            color: #FFDD44;
+        }
+        /* GIF at the bottom */
+        .gif-container {
+            margin-top: 30px;
+        }
+        .gif-container img {
+            width: 400px;
+            border: 5px solid black;
+            border-radius: 10px;
+        }
+        /* Hall of Fame and Hall of Shame styles */
+        .hall-of-fame, .hall-of-shame {
+            margin-top: 50px;
+        }
+        .hall-of-fame h2, .hall-of-shame h2 {
+            color: #FFDD44;
+        }
+        .hall-of-shame img {
+            width: 300px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        .hall-of-fame img {
+            width: 300px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        /* Chatbot styles */
+        .chatbot, .customer-support {
+            margin-top: 50px;
             background-color: #222222;
             color: white;
             padding: 20px;
             border-radius: 10px;
             width: 300px;
-            margin: 30px auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .chatbot input, .customer-support input {
+            padding: 10px;
+            width: 200px;
+            margin-right: 10px;
+            font-family: "Papyrus", cursive, sans-serif;
+        }
+        .chatbot button, .customer-support button {
+            padding: 10px;
+            background-color: #FFDD44;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: "Papyrus", cursive, sans-serif;
         }
         .chatbox {
+            margin-top: 20px;
             background-color: #333333;
             height: 200px;
             overflow-y: scroll;
             padding: 10px;
             border-radius: 10px;
+            font-family: "Papyrus", cursive, sans-serif;
         }
-        a {
-            color: yellow;
-            font-size: 20px;
-            text-decoration: underline;
+        .chatbox p {
+            margin: 5px 0;
+        }
+
+        /* New styles for the buttons */
+        .shake-btn, .delete-btn, .error-link {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FFDD44;
+            border: none;
             cursor: pointer;
+            font-weight: bold;
+            font-family: "Papyrus", cursive, sans-serif;
         }
+
+        /* Shake screen animation */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Class for shaking effect */
+        .shake {
+            animation: shake 0.5s linear;
+        }
+
     </style>
 </head>
 <body>
     <h1>Welcome to the sandvich Page!</h1>
     <p>so cool that cool LETTUCE LETTUCE 😱</p>
     <img src="https://i.imgur.com/aK3Oip3.jpeg" alt="mmm sandvich">
-    
-    <p><a href="#" onclick="startVirusAlert()">🔥 FREE ROBUX CLICK HERE 🔥</a></p>
-    
+
+    <!-- About Us Section -->
+    <div class="about">
+        <h2>About Us</h2>
+        <p>We are a team of sandwich enthusiasts who love creating epic sandvich Created by @console1930 as for a reason. Not anymore.</p>
+    </div>
+
+    <!-- Hall of Fame Section with YouTube video and images -->
+    <div class="hall-of-fame">
+        <h2>Hall of Fame</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/kHXQhCPCk2Q" frameborder="0" allowfullscreen></iframe>
+        <img src="https://i.imgur.com/aK3Oip3.jpeg" alt="fame image 1">
+        <img src="https://i.imgur.com/IzIEYg0.png" alt="ew lol 2"> <!-- Moved here -->
+    </div>
+
+    <!-- Hall of Shame Section (Removed second image) -->
+    <div class="hall-of-shame">
+        <h2>Hall of Shame</h2>
+        <img src="https://i.imgur.com/a1Vhpox.png" alt="me 1">
+    </div>
+
+    <!-- Footer with the funny text -->
     <footer>
         <p>Produced by stupid assholes Corp 6969</p>
     </footer>
-    
+
+    <!-- GIF at the bottom -->
+    <div class="gif-container">
+        <img src="https://media.tenor.com/uO3_xFy-J90AAAAj/sandwich-spinning.gif" alt="sandwich spinning gif">
+    </div>
+
+    <!-- Useless Chatbot Section -->
+    <div class="chatbot">
+        <h2>Useless Chatbot</h2>
+        <div class="chatbox" id="chatbox">
+            <p>Chatbot: Hello! Ask me something silly!</p>
+        </div>
+        <input type="text" id="userInput" placeholder="Ask me a question">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <!-- Customer Support Section -->
+    <div class="customer-support">
+        <h2>Customer Support</h2>
+        <div class="chatbox" id="supportChatbox">
+            <p>Customer Support: Hello! How can I assist you?</p>
+        </div>
+        <input type="text" id="supportInput" placeholder="Ask customer support">
+        <button onclick="sendSupportMessage()">Send</button>
+    </div>
+
+    <!-- New Features -->
+    <!-- Non-working Link -->
+    <a href="#" class="error-link" onclick="triggerError()">Click me for an error!</a>
+
+    <!-- Button to Shake Screen -->
+    <button class="shake-btn" onclick="shakeScreen()">Shake my screen!</button>
+
+    <!-- Button to Delete Everything from the Site -->
+    <button class="delete-btn" onclick="deleteEverything()">Delete Everything!</button>
+
     <script>
-        function startVirusAlert() {
-            setTimeout(() => {
-                alert("⚠️ Windows has detected a virus. Please call 1-800-NOT-A-SCAM");
-            }, 5000);
-            setTimeout(() => {
-                document.body.innerHTML = '<h1 style="color: white; background: blue; font-size: 50px;">A critical error has occurred. Please restart your computer.</h1>';
-            }, 20000);
+        const chatbotResponses = [
+            "L+Ratio 😂",
+            "Didn’t ask. 🤡",
+            "You're talking to a sandwich, not a human.",
+            "I'm just here to vibe and make sandwiches.",
+            "Imagine being a sandwich, couldn't be me.",
+            "The sandwich knows all. The sandwich speaks truth.",
+            "I like turtles!",
+            "The sky's purple, deal with it.",
+            "I once saw a unicorn in my fridge.",
+            "You need a sandwich, not my opinion.",
+            "Your argument is invalid; you’re talking to a chatbot."
+        ];
+
+        function sendSupportMessage() {
+            const supportMessage = document.getElementById("supportInput").value;
+
+            if (supportMessage.trim() !== "") {
+                document.getElementById("supportChatbox").innerHTML += `<p>You: ${supportMessage}</p>`;
+                document.getElementById("supportChatbox").innerHTML += `<p>Customer Support: Didn't ask.</p>`;
+                document.getElementById("supportChatbox").scrollTop = document.getElementById("supportChatbox").scrollHeight;
+                document.getElementById("supportInput").value = "";
+            }
+        }
+
+        function sendMessage() {
+            const userMessage = document.getElementById("userInput").value;
+
+            if (userMessage.trim() !== "") {
+                document.getElementById("chatbox").innerHTML += `<p>You: ${userMessage}</p>`;
+                const randomResponse = chatbotResponses[Math.floor(Math.random() * chatbotResponses.length)];
+                document.getElementById("chatbox").innerHTML += `<p>Chatbot: ${randomResponse}</p>`;
+                document.getElementById("chatbox").scrollTop = document.getElementById("chatbox").scrollHeight;
+                document.getElementById("userInput").value = "";
+            }
+        }
+
+        // Function to simulate a Windows error message
+        function triggerError() {
+            alert("Windows Error: Something went wrong. Please restart your computer.");
+            setTimeout(function() {
+                window.location.href = "https://i.imgur.com/GrfCTRP.jpg";  // BSOD image on Imgur after 20 seconds
+            }, 20000);  // 20 seconds delay before BSOD image appears
+        }
+
+        // Function to shake the screen
+        function shakeScreen() {
+            document.body.classList.add('shake');
+            setTimeout(function() {
+                document.body.classList.remove('shake');
+            }, 500); // shake for 0.5s
+        }
+
+        // Function to delete everything from the site (clears the entire body)
+        function deleteEverything() {
+            document.body.innerHTML = ""; // Removes all content from the page
         }
     </script>
 </body>
