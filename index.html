@@ -3,275 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heavy's one website. SANDVICH</title>
+    <title>HEAVY WEAPONS GUY OFFICIAL WEBSITE</title>
+    <!-- Tailwind CSS for layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Set Papyrus as the font for EVERYTHING */
-        body, h1, h2, p, input, button {
-            font-family: "Papyrus", cursive, sans-serif;
+        /* CORE AESTHETICS */
+        @import url('https://fonts.googleapis.com/css2?family=Vt323&display=swap');
+
+        :root {
+            --tf-red: #B8383B;
+            --tf-blue: #5885A2;
+            --dark-grey: #1a1a1a;
+            --off-white: #f5e7de;
+            --papyrus: "Papyrus", "Comic Sans MS", cursive;
+        }
+
+        body {
+            background-color: #2b2b2b;
+            background-image: radial-gradient(#3a3a3a 15%, transparent 16%), radial-gradient(#3a3a3a 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            color: var(--off-white);
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: hidden;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, .chaotic-font {
+            font-family: var(--papyrus);
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes intense-shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-3px, -2px) rotate(-1deg); }
+            20% { transform: translate(-6px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .floating-sandvich {
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 221, 68, 0.4));
+        }
+
+        .shake-active {
+            animation: intense-shake 0.5s infinite;
+        }
+
+        /* COMPONENT STYLES */
+        .retro-card {
+            background: #1e1e1e;
+            border: 4px solid #000;
+            box-shadow: 10px 10px 0px #000;
+            transition: transform 0.2s;
         }
         
-        body {
-            background-color: #444444;
-            text-align: center;
-            padding: 50px;
+        .retro-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 12px 12px 0px var(--tf-red);
         }
-        h1 {
-            color: #000000;
+
+        .chat-terminal {
+            background-color: #000;
+            border: 4px solid #444;
+            font-family: 'Vt323', monospace;
+            font-size: 1.2rem;
         }
-        img {
-            width: 300px;
-            border: 5px solid black;
-            border-radius: 20px;
+
+        .chat-bubbles {
+            scrollbar-width: thin;
+            scrollbar-color: var(--tf-red) #000;
         }
-        /* About Us Section */
-        .about {
-            background-color: #444444;
+
+        /* CUSTOM UI ELEMENTS */
+        .danger-btn {
+            background: var(--tf-red);
             color: white;
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 10px;
+            font-family: var(--papyrus);
+            border: 3px solid black;
+            box-shadow: 5px 5px 0 black;
+            transition: all 0.1s;
         }
-        .about h2 {
-            color: #FFDD44;
+        
+        .danger-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 black;
         }
-        .about p {
-            font-size: 18px;
-        }
-        /* Footer with funny text */
-        footer {
-            margin-top: 50px;
-            font-size: 16px;
-            color: #FFDD44;
-        }
-        /* GIF at the bottom */
-        .gif-container {
-            margin-top: 30px;
-        }
-        .gif-container img {
-            width: 400px;
-            border: 5px solid black;
-            border-radius: 10px;
-        }
-        /* Hall of Fame and Hall of Shame styles */
-        .hall-of-fame, .hall-of-shame {
-            margin-top: 50px;
-        }
-        .hall-of-fame h2, .hall-of-shame h2 {
-            color: #FFDD44;
-        }
-        .hall-of-shame img {
-            width: 300px;
-            margin: 10px;
-            border-radius: 10px;
-        }
-        .hall-of-fame img {
-            width: 300px;
-            margin: 10px;
-            border-radius: 10px;
-        }
-        /* Chatbot styles */
-        .chatbot, .customer-support {
-            margin-top: 50px;
-            background-color: #222222;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .chatbot input, .customer-support input {
-            padding: 10px;
-            width: 200px;
-            margin-right: 10px;
-            font-family: "Papyrus", cursive, sans-serif;
-        }
-        .chatbot button, .customer-support button {
-            padding: 10px;
-            background-color: #FFDD44;
-            border: none;
+
+        .scam-link {
+            color: #00ff00;
+            text-decoration: underline;
             cursor: pointer;
-            font-weight: bold;
-            font-family: "Papyrus", cursive, sans-serif;
-        }
-        .chatbox {
-            margin-top: 20px;
-            background-color: #333333;
-            height: 200px;
-            overflow-y: scroll;
-            padding: 10px;
-            border-radius: 10px;
-            font-family: "Papyrus", cursive, sans-serif;
-        }
-        .chatbox p {
-            margin: 5px 0;
+            animation: blink 1s infinite;
         }
 
-        /* New styles for the buttons */
-        .shake-btn, .delete-btn, .error-link {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #FFDD44;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            font-family: "Papyrus", cursive, sans-serif;
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
-        /* Shake screen animation */
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
-        }
-
-        /* Class for shaking effect */
-        .shake {
-            animation: shake 0.5s linear;
-        }
-
-        /* BSOD covering the screen */
-        .bsod {
+        /* BLUE SCREEN OF DEATH */
+        #bsod {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://i.imgur.com/FX1d0jG.png') no-repeat center center;
-            background-size: cover;
-            z-index: 9999;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0078d7;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 10%;
+            z-index: 99999;
+            cursor: none;
         }
 
+        /* FAKE ERROR MODAL */
+        #fake-error {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #d4d0c8;
+            border: 2px solid white;
+            border-right-color: #404040;
+            border-bottom-color: #404040;
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+            width: 300px;
+            z-index: 10000;
+            font-family: Tahoma, sans-serif;
+            color: black;
+        }
+        
+        .title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 2px 4px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
-<body>
-    <h1>Welcome to the sandvich Page!</h1>
-    <p>so cool that cool LETTUCE LETTUCE 😱</p>
-    <img src="https://i.imgur.com/aK3Oip3.jpeg" alt="mmm sandvich">
+<body class="min-h-screen flex flex-col items-center">
 
-    <!-- About Us Section -->
-    <div class="about">
-        <h2>About Us</h2>
-        <p>We are a team of sandwich enthusiasts who love creating epic sandvich Created by @console1930 as for a reason. Not anymore.</p>
-    </div>
+    <!-- HEADER -->
+    <header class="w-full text-center py-8 bg-black border-b-8 border-red-700 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/diagonal-stripes.png')]"></div>
+        <h1 class="text-4xl md:text-6xl text-white uppercase relative z-10 drop-shadow-[0_5px_0_rgba(255,0,0,1)]">
+            HEAVY'S ONE WEBSITE
+        </h1>
+        <p class="text-yellow-400 mt-2 text-xl chaotic-font">ENTIRE TEAM IS BABIES!</p>
+    </header>
 
-    <!-- Hall of Fame Section with YouTube video and images -->
-    <div class="hall-of-fame">
-        <h2>Hall of Fame</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/kHXQhCPCk2Q" frameborder="0" allowfullscreen></iframe>
-        <img src="https://i.imgur.com/aK3Oip3.jpeg" alt="fame image 1">
-        <!-- Replaced image as requested -->
-        <img src="https://i.imgur.com/haKRL3P.png" alt="new fame image"> <!-- New Image -->
-    </div>
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 max-w-5xl">
+        
+        <!-- HERO SECTION -->
+        <div class="flex flex-col items-center my-12">
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-yellow-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                <img src="https://wiki.teamfortress.com/w/images/thumb/9/95/Sandvich.png/250px-Sandvich.png" 
+                     alt="The Sandvich" 
+                     class="relative floating-sandvich w-64 md:w-80 cursor-pointer hover:scale-110 transition-transform duration-300">
+            </div>
+            <h2 class="text-3xl text-yellow-400 mt-8 text-center bg-black px-4 py-2 border-2 border-white -rotate-2">
+                MOIST AND DELICIOUS.
+            </h2>
+        </div>
 
-    <!-- Hall of Shame Section (Removed second image) -->
-    <div class="hall-of-shame">
-        <h2>Hall of Shame</h2>
-        <img src="https://i.imgur.com/a1Vhpox.png" alt="me 1">
-    </div>
+        <!-- ABOUT SECTION -->
+        <div class="retro-card p-6 mb-12 bg-[#2a2a2a]">
+            <h2 class="text-3xl text-red-500 mb-4 border-b-2 border-dashed border-gray-600 pb-2">ABOUT DIS SITE</h2>
+            <p class="text-lg leading-relaxed">
+                We make sandvich. We eat sandvich. Doctor says cholesterol is high. I say Doctor is SPY.
+                Created by @console1930 for reasons unknown to science. 
+            </p>
+        </div>
 
-    <!-- Footer with the funny text -->
-    <footer>
-        <p>Produced by stupid assholes Corp 6969</p>
+        <!-- HALLS OF FAME & SHAME GRID -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            
+            <!-- HALL OF FAME -->
+            <div class="bg-yellow-900/20 p-4 border-4 border-yellow-500 rounded-xl relative">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-yellow-500 text-black font-bold px-6 py-1 transform -rotate-1 border-2 border-black font-[Papyrus]">
+                    HALL OF FAME
+                </div>
+                <div class="mt-4 flex flex-col gap-4 items-center">
+                    <iframe class="w-full aspect-video border-4 border-black shadow-lg" src="https://www.youtube.com/embed/kHXQhCPCk2Q" frameborder="0" allowfullscreen></iframe>
+                    <img src="https://i.imgur.com/haKRL3P.png" alt="Legend" class="w-48 border-4 border-white transform rotate-3 shadow-xl">
+                </div>
+            </div>
+
+            <!-- HALL OF SHAME -->
+            <div class="bg-red-900/20 p-4 border-4 border-red-600 rounded-xl relative">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-red-600 text-white font-bold px-6 py-1 transform rotate-1 border-2 border-black font-[Papyrus]">
+                    HALL OF SHAME
+                </div>
+                <div class="mt-4 flex flex-col gap-4 items-center justify-center h-full">
+                    <img src="https://i.imgur.com/a1Vhpox.png" alt="Shame" class="w-48 border-4 border-black grayscale contrast-125 transform -rotate-6 shadow-xl opacity-80 hover:opacity-100 hover:grayscale-0 transition">
+                    <p class="text-red-400 font-bold uppercase mt-2">IS NOT GOOD.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHATBOT COMMAND CENTER -->
+        <h2 class="text-4xl text-center mb-8 text-white drop-shadow-md">COMMUNICATION STATION</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            
+            <!-- USELESS BOT -->
+            <div class="chat-terminal p-4 rounded text-green-500 shadow-[0_0_20px_rgba(0,255,0,0.2)]">
+                <div class="border-b border-green-800 pb-2 mb-2 flex justify-between">
+                    <span>> TERMINAL_01: HEAVY_BOT</span>
+                    <span class="animate-pulse">● ONLINE</span>
+                </div>
+                <div id="chatbox" class="chat-bubbles h-48 overflow-y-auto bg-black/50 p-2 mb-4 text-sm font-mono border border-green-900">
+                    <p class="opacity-70">> SYSTEM: Chat initialized.</p>
+                    <p class="text-green-300">HEAVY: I am Heavy Weapons Guy. And this... is my chat.</p>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="userInput" placeholder="Say something to Heavy..." class="w-full bg-gray-900 border border-green-700 text-green-500 p-2 focus:outline-none focus:border-green-400 font-mono">
+                    <button onclick="sendMessage()" class="bg-green-700 text-black font-bold px-4 hover:bg-green-500">SEND</button>
+                </div>
+            </div>
+
+            <!-- SUPPORT BOT -->
+            <div class="chat-terminal p-4 rounded text-red-500 shadow-[0_0_20px_rgba(255,0,0,0.2)]">
+                <div class="border-b border-red-800 pb-2 mb-2 flex justify-between">
+                    <span>> TERMINAL_02: SUPPORT_???</span>
+                    <span class="animate-pulse">● ANGRY</span>
+                </div>
+                <div id="supportChatbox" class="chat-bubbles h-48 overflow-y-auto bg-black/50 p-2 mb-4 text-sm font-mono border border-red-900">
+                    <p class="opacity-70">> SYSTEM: Ticket #6969 opened.</p>
+                    <p class="text-red-300">SUPPORT: I hate my job. Make it quick.</p>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="supportInput" placeholder="Complaint goes here..." class="w-full bg-gray-900 border border-red-700 text-red-500 p-2 focus:outline-none focus:border-red-400 font-mono">
+                    <button onclick="sendSupportMessage()" class="bg-red-700 text-black font-bold px-4 hover:bg-red-500">YELL</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DANGER ZONE -->
+        <div class="bg-stripes p-8 border-4 border-yellow-400 bg-black mb-24 relative overflow-hidden">
+            <!-- Caution tape CSS pattern -->
+            <div class="absolute inset-0 opacity-10" style="background: repeating-linear-gradient(45deg, #ffd700, #ffd700 10px, #000 10px, #000 20px);"></div>
+            
+            <h2 class="text-4xl text-center text-yellow-400 mb-8 relative z-10 bg-black inline-block px-4">THE DANGER ZONE</h2>
+            
+            <div class="flex flex-wrap justify-center gap-6 relative z-10">
+                <!-- SCAM LINK -->
+                <div class="w-full text-center mb-4">
+                    <a onclick="triggerError()" class="scam-link text-2xl hover:text-red-500 transition cursor-pointer">
+                        >>> CLICK FOR FREE MINECRAFT DIAMONDS <<<
+                    </a>
+                </div>
+
+                <button onclick="shakeScreen()" class="danger-btn text-xl px-8 py-4 bg-yellow-400 text-black hover:bg-yellow-300">
+                    <i class="fas fa-radiation fa-spin mr-2"></i> ACTIVATE EARTHQUAKE
+                </button>
+
+                <button onclick="deleteEverything()" class="danger-btn text-xl px-8 py-4 bg-red-600 hover:bg-red-500 text-white">
+                    <i class="fas fa-trash-alt mr-2"></i> DELETE INTERNET
+                </button>
+            </div>
+        </div>
+
+        <!-- SPINNING GIF FOOTER -->
+        <div class="flex justify-center mb-12">
+            <img src="https://media.tenor.com/uO3_xFy-J90AAAAj/sandwich-spinning.gif" alt="sandwich spinning gif" class="border-8 border-white rounded-full w-48 h-48 object-cover animate-[spin-slow_10s_linear_infinite]">
+        </div>
+
+    </main>
+
+    <footer class="w-full bg-black text-center py-6 border-t-4 border-gray-700 text-gray-500 font-mono text-sm">
+        <p>PRODUCED BY STUPID ASSHOLES CORP 6969 &copy; 2007</p>
+        <p>NO REFUNDS. NO MEDIC.</p>
     </footer>
 
-    <!-- GIF at the bottom -->
-    <div class="gif-container">
-        <img src="https://media.tenor.com/uO3_xFy-J90AAAAj/sandwich-spinning.gif" alt="sandwich spinning gif">
-    </div>
+    <!-- HIDDEN ELEMENTS FOR INTERACTION -->
 
-    <!-- Useless Chatbot Section -->
-    <div class="chatbot">
-        <h2>Useless Chatbot</h2>
-        <div class="chatbox" id="chatbox">
-            <p>Chatbot: hoi. im a chatbot not ai, ask me smth.</p>
+    <!-- Fake Windows 98 Error Modal -->
+    <div id="fake-error">
+        <div class="title-bar">
+            <span>Critical Error</span>
+            <button onclick="closeError()" class="bg-gray-300 text-black px-1 font-bold">X</button>
         </div>
-        <input type="text" id="userInput" placeholder="Ask me a question">
-        <button onclick="sendMessage()">Send</button>
-    </div>
-
-    <!-- Customer Support Section -->
-    <div class="customer-support">
-        <h2>Customer Support </h2>
-        <div class="chatbox" id="supportChatbox">
-            <p>Customer Support: i get low paid, tell me punk whatca need.</p>
+        <div class="p-4 flex items-center gap-4">
+            <i class="fas fa-times-circle text-4xl text-red-600"></i>
+            <div>
+                <p class="mb-4 text-sm">Windows has detected a skill issue.</p>
+                <button onclick="startBSOD()" class="border-2 border-black border-r-white border-b-white px-4 py-1 active:border-white active:border-r-black active:border-b-black bg-gray-300 text-sm">
+                    OK
+                </button>
+            </div>
         </div>
-        <input type="text" id="supportInput" placeholder="Ask customer support">
-        <button onclick="sendSupportMessage()">Send</button>
     </div>
 
-    <!-- New Features -->
-    <!-- Non-working Link -->
-    <a href="#" class="error-link" onclick="triggerError()">free minecraft</a>
-
-    <!-- Button to Shake Screen -->
-    <button class="shake-btn" onclick="shakeScreen()">shake screen for a reason.</button>
-
-    <!-- Button to Delete Everything from the Site -->
-    <button class="delete-btn" onclick="deleteEverything()">Get banned from the website.</button>
+    <!-- BSOD Overlay -->
+    <div id="bsod" onclick="location.reload()">
+        <p class="text-2xl mb-8">:(</p>
+        <p class="mb-8">Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
+        <p class="mb-4">0% complete</p>
+        <div class="flex gap-4 items-center">
+            <div class="bg-white p-2">
+                <!-- QR Code placeholder -->
+                <div class="w-20 h-20 bg-black"></div>
+            </div>
+            <div class="text-sm">
+                <p>For more information about this issue and possible fixes, visit https://www.windows.com/stopcode</p>
+                <p>If you call a support person, give them this info:</p>
+                <p>Stop code: CRITICAL_PROCESS_SANDVICH_DIED</p>
+            </div>
+        </div>
+        <p class="mt-20 animate-pulse text-yellow-300">[ CLICK ANYWHERE TO RESTART ]</p>
+    </div>
 
     <script>
-        const chatbotResponses = [
-            "L+Ratio ",
-            "Didn’t ask. ",
-            "You're talking to a sandwich, not a human.",
-            "I'm just here to vibe and make sandwiches.",
-            "Imagine being a sandwich, couldn't be me.",
-            "The sandwich knows all. The sandwich speaks truth.",
-            "I like turtles!",
-            "The sky's purple, deal with it.",
-            "I once saw a unicorn in my fridge.",
-            "You need a sandwich, not my opinion.",
-            "Your argument is invalid; you’re talking to a chatbot."
+        // -- CHATBOT LOGIC --
+        const heavyQuotes = [
+            "POOTIS SPENCER HERE!",
+            "Sandvich makes me strong!",
+            "Who touched my gun?",
+            "Run, cowards!",
+            "I am heavy weapons guy...",
+            "OM NOM NOM NOM.",
+            "Entire team is BABIES!",
+            "You are loose cannon sandvich, but you are a damn good cop!"
         ];
 
-        function sendSupportMessage() {
-            const supportMessage = document.getElementById("supportInput").value;
-
-            if (supportMessage.trim() !== "") {
-                document.getElementById("supportChatbox").innerHTML += `<p>You: ${supportMessage}</p>`;
-                document.getElementById("supportChatbox").innerHTML += `<p>Customer Support: Didn't ask.</p>`;
-                document.getElementById("supportChatbox").scrollTop = document.getElementById("supportChatbox").scrollHeight;
-                document.getElementById("supportInput").value = "";
-            }
-        }
-
         function sendMessage() {
-            const userMessage = document.getElementById("userInput").value;
+            const input = document.getElementById("userInput");
+            const box = document.getElementById("chatbox");
+            const msg = input.value.trim();
 
-            if (userMessage.trim() !== "") {
-                document.getElementById("chatbox").innerHTML += `<p>You: ${userMessage}</p>`;
-                const randomResponse = chatbotResponses[Math.floor(Math.random() * chatbotResponses.length)];
-                document.getElementById("chatbox").innerHTML += `<p>Chatbot: ${randomResponse}</p>`;
-                document.getElementById("chatbox").scrollTop = document.getElementById("chatbox").scrollHeight;
-                document.getElementById("userInput").value = "";
+            if (msg) {
+                // User Msg
+                box.innerHTML += `<div class="text-green-300 mb-1">> YOU: ${msg}</div>`;
+                input.value = "";
+                box.scrollTop = box.scrollHeight;
+
+                // Bot Response
+                setTimeout(() => {
+                    const randomQuote = heavyQuotes[Math.floor(Math.random() * heavyQuotes.length)];
+                    box.innerHTML += `<div class="text-white mb-2">> HEAVY: ${randomQuote}</div>`;
+                    box.scrollTop = box.scrollHeight;
+                }, 600);
             }
         }
 
-        // Function to simulate a Windows error message
-        function triggerError() {
-            alert("Windows Error: Something went wrong. Please restart your computer.");
-            setTimeout(function() {
-                const bsod = document.createElement("div");
-                bsod.classList.add("bsod");
-                document.body.appendChild(bsod);
-            }, 20000);  // 20 seconds delay before BSOD image appears
+        function sendSupportMessage() {
+            const input = document.getElementById("supportInput");
+            const box = document.getElementById("supportChatbox");
+            const msg = input.value.trim();
+
+            if (msg) {
+                box.innerHTML += `<div class="text-red-300 mb-1">> VICTIM: ${msg}</div>`;
+                input.value = "";
+                box.scrollTop = box.scrollHeight;
+
+                setTimeout(() => {
+                    box.innerHTML += `<div class="text-white mb-2">> SUPPORT: Didn't ask + Ratio + L.</div>`;
+                    box.scrollTop = box.scrollHeight;
+                }, 800);
+            }
         }
 
-        // Function to shake the screen
+        // -- EFFECTS LOGIC --
+
         function shakeScreen() {
-            document.body.classList.add('shake');
-            setTimeout(function() {
-                document.body.classList.remove('shake');
-            }, 500); // shake for 0.5s
+            const body = document.body;
+            body.classList.add('shake-active');
+            
+            // Add some random colored flashes
+            const originalBg = body.style.backgroundColor;
+            
+            setTimeout(() => {
+                body.classList.remove('shake-active');
+            }, 1000);
         }
 
-        // Function to delete everything from the site (clears the entire body)
-        function deleteEverything() {
-            document.body.innerHTML = ""; // Removes all content from the page
+        function triggerError() {
+            const modal = document.getElementById('fake-error');
+            modal.style.display = 'block';
+            
+            // Play a fake error sound logic (visual only for this context)
+            document.body.style.cursor = 'wait';
         }
+
+        function closeError() {
+            document.getElementById('fake-error').style.display = 'none';
+            document.body.style.cursor = 'default';
+        }
+
+        function startBSOD() {
+            closeError();
+            // Delay slightly for effect
+            setTimeout(() => {
+                document.getElementById('bsod').style.display = 'block';
+                // Request full screen if possible (browser dependent)
+                try {
+                    document.documentElement.requestFullscreen();
+                } catch(e) {}
+            }, 300);
+        }
+
+        function deleteEverything() {
+            if(confirm("ARE YOU SURE? THIS WILL DELETE THE WEBSITE.")) {
+                document.body.style.transition = "all 2s ease";
+                document.body.style.transform = "scale(0) rotate(720deg)";
+                document.body.style.opacity = "0";
+                
+                setTimeout(() => {
+                    document.body.innerHTML = "<div style='color:white; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>Site Deleted. Have a nice day.</h1></div>";
+                    document.body.style.transform = "none";
+                    document.body.style.opacity = "1";
+                    document.body.style.background = "black";
+                }, 2000);
+            }
+        }
+
+        // Add Enter key support for inputs
+        document.getElementById("userInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") sendMessage();
+        });
+        document.getElementById("supportInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") sendSupportMessage();
+        });
+
     </script>
 </body>
 </html>
