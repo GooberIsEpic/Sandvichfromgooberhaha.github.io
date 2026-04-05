@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CORE AESTHETICS */
         @import url('https://fonts.googleapis.com/css2?family=Vt323&display=swap');
 
         :root {
@@ -31,14 +30,12 @@
             overflow-x: hidden;
         }
 
-        /* TYPOGRAPHY */
         h1, h2, h3, .chaotic-font {
             font-family: var(--papyrus);
             font-weight: bold;
             letter-spacing: -1px;
         }
 
-        /* ANIMATIONS */
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
@@ -73,7 +70,6 @@
             animation: intense-shake 0.5s infinite;
         }
 
-        /* COMPONENT STYLES */
         .retro-card {
             background: #1e1e1e;
             border: 4px solid #000;
@@ -98,7 +94,6 @@
             scrollbar-color: var(--tf-red) #000;
         }
 
-        /* CUSTOM UI ELEMENTS */
         .danger-btn {
             background: var(--tf-red);
             color: white;
@@ -124,7 +119,6 @@
             50% { opacity: 0; }
         }
 
-        /* BLUE SCREEN OF DEATH */
         #bsod {
             display: none;
             position: fixed;
@@ -140,7 +134,6 @@
             cursor: none;
         }
 
-        /* FAKE ERROR MODAL */
         #fake-error {
             display: none;
             position: fixed;
@@ -179,7 +172,6 @@
         <p class="text-yellow-400 mt-2 text-xl chaotic-font">ENTIRE TEAM IS BABIES!</p>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="container mx-auto px-4 max-w-5xl">
         
         <!-- HERO SECTION -->
@@ -206,7 +198,6 @@
 
         <!-- HALLS OF FAME & SHAME GRID -->
         <div class="grid md:grid-cols-2 gap-8 mb-16">
-            
             <!-- HALL OF FAME -->
             <div class="bg-yellow-900/20 p-4 border-4 border-yellow-500 rounded-xl relative">
                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-yellow-500 text-black font-bold px-6 py-1 transform -rotate-1 border-2 border-black font-[Papyrus]">
@@ -234,7 +225,6 @@
         <h2 class="text-4xl text-center mb-8 text-white drop-shadow-md">COMMUNICATION STATION</h2>
         
         <div class="grid md:grid-cols-2 gap-8 mb-16">
-            
             <!-- USELESS BOT -->
             <div class="chat-terminal p-4 rounded text-green-500 shadow-[0_0_20px_rgba(0,255,0,0.2)]">
                 <div class="border-b border-green-800 pb-2 mb-2 flex justify-between">
@@ -266,18 +256,27 @@
                     <button onclick="sendSupportMessage()" class="bg-red-700 text-black font-bold px-4 hover:bg-red-500">YELL</button>
                 </div>
             </div>
+        </div>
 
+        <!-- WORDWALL WIDGET -->
+        <div class="my-12 flex justify-center">
+            <div class="retro-card w-full max-w-lg border-4 border-white shadow-lg p-2">
+                <iframe 
+                    class="w-full aspect-[500/380]" 
+                    src="https://wordwall.net/embed/c75a420fc02c4940a1517a23921c2975?themeId=48&templateId=5&fontStackId=0" 
+                    frameborder="0" 
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
 
         <!-- DANGER ZONE -->
         <div class="bg-stripes p-8 border-4 border-yellow-400 bg-black mb-24 relative overflow-hidden">
-            <!-- Caution tape CSS pattern -->
             <div class="absolute inset-0 opacity-10" style="background: repeating-linear-gradient(45deg, #ffd700, #ffd700 10px, #000 10px, #000 20px);"></div>
             
             <h2 class="text-4xl text-center text-yellow-400 mb-8 relative z-10 bg-black inline-block px-4">THE DANGER ZONE</h2>
             
             <div class="flex flex-wrap justify-center gap-6 relative z-10">
-                <!-- SCAM LINK -->
                 <div class="w-full text-center mb-4">
                     <a onclick="triggerError()" class="scam-link text-2xl hover:text-red-500 transition cursor-pointer">
                         >>> CLICK FOR FREE MINECRAFT DIAMONDS <<<
@@ -307,8 +306,6 @@
     </footer>
 
     <!-- HIDDEN ELEMENTS FOR INTERACTION -->
-
-    <!-- Fake Windows 98 Error Modal -->
     <div id="fake-error">
         <div class="title-bar">
             <span>Critical Error</span>
@@ -325,14 +322,12 @@
         </div>
     </div>
 
-    <!-- BSOD Overlay -->
     <div id="bsod" onclick="location.reload()">
         <p class="text-2xl mb-8">:(</p>
         <p class="mb-8">Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you.</p>
         <p class="mb-4">0% complete</p>
         <div class="flex gap-4 items-center">
             <div class="bg-white p-2">
-                <!-- QR Code placeholder -->
                 <div class="w-20 h-20 bg-black"></div>
             </div>
             <div class="text-sm">
@@ -344,118 +339,4 @@
         <p class="mt-20 animate-pulse text-yellow-300">[ CLICK ANYWHERE TO RESTART ]</p>
     </div>
 
-    <script>
-        // -- CHATBOT LOGIC --
-        const heavyQuotes = [
-            "POOTIS SPENCER HERE!",
-            "Sandvich makes me strong!",
-            "Who touched my gun?",
-            "Run, cowards!",
-            "I am heavy weapons guy...",
-            "OM NOM NOM NOM.",
-            "Entire team is BABIES!",
-            "You are loose cannon sandvich, but you are a damn good cop!"
-        ];
-
-        function sendMessage() {
-            const input = document.getElementById("userInput");
-            const box = document.getElementById("chatbox");
-            const msg = input.value.trim();
-
-            if (msg) {
-                // User Msg
-                box.innerHTML += `<div class="text-green-300 mb-1">> YOU: ${msg}</div>`;
-                input.value = "";
-                box.scrollTop = box.scrollHeight;
-
-                // Bot Response
-                setTimeout(() => {
-                    const randomQuote = heavyQuotes[Math.floor(Math.random() * heavyQuotes.length)];
-                    box.innerHTML += `<div class="text-white mb-2">> HEAVY: ${randomQuote}</div>`;
-                    box.scrollTop = box.scrollHeight;
-                }, 600);
-            }
-        }
-
-        function sendSupportMessage() {
-            const input = document.getElementById("supportInput");
-            const box = document.getElementById("supportChatbox");
-            const msg = input.value.trim();
-
-            if (msg) {
-                box.innerHTML += `<div class="text-red-300 mb-1">> VICTIM: ${msg}</div>`;
-                input.value = "";
-                box.scrollTop = box.scrollHeight;
-
-                setTimeout(() => {
-                    box.innerHTML += `<div class="text-white mb-2">> SUPPORT: Didn't ask + Ratio + L.</div>`;
-                    box.scrollTop = box.scrollHeight;
-                }, 800);
-            }
-        }
-
-        // -- EFFECTS LOGIC --
-
-        function shakeScreen() {
-            const body = document.body;
-            body.classList.add('shake-active');
-            
-            // Add some random colored flashes
-            const originalBg = body.style.backgroundColor;
-            
-            setTimeout(() => {
-                body.classList.remove('shake-active');
-            }, 1000);
-        }
-
-        function triggerError() {
-            const modal = document.getElementById('fake-error');
-            modal.style.display = 'block';
-            
-            // Play a fake error sound logic (visual only for this context)
-            document.body.style.cursor = 'wait';
-        }
-
-        function closeError() {
-            document.getElementById('fake-error').style.display = 'none';
-            document.body.style.cursor = 'default';
-        }
-
-        function startBSOD() {
-            closeError();
-            // Delay slightly for effect
-            setTimeout(() => {
-                document.getElementById('bsod').style.display = 'block';
-                // Request full screen if possible (browser dependent)
-                try {
-                    document.documentElement.requestFullscreen();
-                } catch(e) {}
-            }, 300);
-        }
-
-        function deleteEverything() {
-            if(confirm("ARE YOU SURE? THIS WILL DELETE THE WEBSITE.")) {
-                document.body.style.transition = "all 2s ease";
-                document.body.style.transform = "scale(0) rotate(720deg)";
-                document.body.style.opacity = "0";
-                
-                setTimeout(() => {
-                    document.body.innerHTML = "<div style='color:white; display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;'><h1>Site Deleted. Have a nice day.</h1></div>";
-                    document.body.style.transform = "none";
-                    document.body.style.opacity = "1";
-                    document.body.style.background = "black";
-                }, 2000);
-            }
-        }
-
-        // Add Enter key support for inputs
-        document.getElementById("userInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") sendMessage();
-        });
-        document.getElementById("supportInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") sendSupportMessage();
-        });
-
-    </script>
-</body>
-</html>
+   
