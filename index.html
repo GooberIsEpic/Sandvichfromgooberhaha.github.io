@@ -1,1 +1,220 @@
-WEBSITE IS DELETED! for now.. <3
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>cone</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+    color: #171717;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    width: min(680px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  header {
+    padding: 90px 0 55px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .name {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -4px;
+    margin: 0;
+  }
+
+  .orange {
+    color: #f15a24;
+  }
+
+  .sub {
+    margin: 8px 0 0;
+    color: #666;
+    font-size: 17px;
+  }
+
+  nav {
+    margin-top: 28px;
+  }
+
+  nav a {
+    color: #555;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 14px;
+  }
+
+  nav a:hover {
+    color: #f15a24;
+  }
+
+  section {
+    padding: 48px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin: 0 0 18px;
+  }
+
+  p {
+    margin: 8px 0;
+  }
+
+  .box {
+    padding: 20px;
+    background: #fafafa;
+    border-left: 3px solid #f15a24;
+  }
+
+  .label {
+    color: #888;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  button {
+    border: 1px solid #ccc;
+    background: white;
+    padding: 9px 14px;
+    cursor: pointer;
+    font: inherit;
+    margin-top: 12px;
+  }
+
+  button:hover {
+    border-color: #f15a24;
+    color: #f15a24;
+  }
+
+  #random {
+    margin-top: 14px;
+    color: #555;
+    min-height: 25px;
+  }
+
+  footer {
+    padding: 45px 0 70px;
+    color: #999;
+    font-size: 13px;
+  }
+
+  @media (max-width: 500px) {
+    .name {
+      font-size: 48px;
+    }
+
+    header {
+      padding-top: 60px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <header>
+    <h1 class="name">
+      <span class="orange">cone</span>.
+    </h1>
+
+    <p class="sub">
+     i am cone yes yes
+    </p>
+
+    <nav>
+      <a href="#about">about</a>
+      <a href="#luca">luca</a>
+      <a href="#ipostasey">ipostasey</a>
+      <a href="#stupid">stupid stuff</a>
+    </nav>
+  </header>
+
+
+  <section id="about">
+    <h2>about</h2>
+
+    <div class="box">
+      <div class="label">basic information</div>
+
+      <p>im cone. they/them.</p>
+      <p>im a traffic cone.</p>
+      <p>thats  basically it.</p>
+    </div>
+  </section>
+
+
+  <section id="luca">
+    <h2>luca</h2>
+
+    <p>my boyfriend.</p>
+    <p class="sub">hes so adorable <3 </p>
+  </section>
+
+
+  <section id="ipostasey">
+    <h2>ipostasey</h2>
+
+    <p>my best friendo.</p>
+    <p class="sub">
+      super cool dude
+    </p>
+  </section>
+
+
+  <section id="stupid">
+    <h2>stupid stuff</h2>
+
+    <p>sometimes cone has a thought and writes it here.</p>
+
+    <button onclick="randomThing()">
+      give me quotes from cone NOW
+    </button>
+
+    <div id="random"></div>
+  </section>
+
+
+  <footer>
+    cone © perchance (not the ai company)
+  </footer>
+
+</div>
+
+
+<script>
+const things = [
+  "we passed upon a lonely stairs",
+  "this site deserves zero purpse it should sudo rm rf root now",
+  "whats 9+10 bro",
+  "hes so adorable",
+  "horse alert",
+  "i only think about himm",
+  "you have curiosity, me too.",
+  "you alerted the cone"
+];
+
+function randomThing() {
+  document.getElementById("random").textContent =
+    things[Math.floor(Math.random() * things.length)];
+}
+</script>
+
+</body>
+</html>
