@@ -12,19 +12,21 @@
 
   body {
     margin: 0;
-    background: #fff;
+    background: #ffffff;
     color: #171717;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
+    overflow-x: hidden;
   }
 
   .wrap {
     width: min(680px, calc(100% - 40px));
     margin: 0 auto;
+    animation: fadeIn 0.4s ease-out forwards;
   }
 
   header {
-    padding: 90px 0 55px;
+    padding: 80px 0 50px;
     border-bottom: 1px solid #ddd;
   }
 
@@ -33,37 +35,72 @@
     font-weight: 800;
     letter-spacing: -4px;
     margin: 0;
+    user-select: none;
+    line-height: 1;
   }
 
   .orange {
     color: #f15a24;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .orange:hover {
+    transform: scale(1.03);
   }
 
   .sub {
-    margin: 8px 0 0;
+    margin: 12px 0 0;
     color: #666;
     font-size: 17px;
   }
 
   nav {
     margin-top: 28px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
   nav a {
     color: #555;
     text-decoration: none;
-    margin-right: 20px;
     font-size: 14px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #f15a24;
+    transition: width 0.2s ease;
   }
 
   nav a:hover {
     color: #f15a24;
   }
 
-  section {
-    padding: 48px 0;
-    border-bottom: 1px solid #eee;
+  nav a:hover::after {
+    width: 100%;
   }
+
+  section {
+    padding: 44px 0;
+    border-bottom: 1px solid #eee;
+    animation: slideUp 0.4s ease-out both;
+  }
+
+  #about { animation-delay: 0.05s; }
+  #luca { animation-delay: 0.1s; }
+  #ipostasey { animation-delay: 0.15s; }
+  #stupid { animation-delay: 0.2s; }
 
   h2 {
     font-size: 22px;
@@ -75,42 +112,156 @@
   }
 
   .box {
-    padding: 20px;
+    padding: 22px;
     background: #fafafa;
     border-left: 3px solid #f15a24;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .box:hover {
+    background: #f5f5f5;
+    transform: translateX(2px);
   }
 
   .label {
     color: #888;
-    font-size: 13px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin-bottom: 8px;
   }
 
+  /* Bracketed Text Status Grid */
+  .status-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed #e0e0e0;
+    font-size: 13px;
+    color: #666;
+  }
+
+  .status-tag {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .status-tag .highlight {
+    color: #f15a24;
+    font-weight: bold;
+  }
+
+  /* Buttons */
   button {
     border: 1px solid #ccc;
-    background: white;
-    padding: 9px 14px;
+    background: #ffffff;
+    padding: 9px 16px;
     cursor: pointer;
     font: inherit;
-    margin-top: 12px;
+    font-size: 14px;
+    margin-top: 14px;
+    transition: all 0.2s ease;
+    color: #171717;
   }
 
   button:hover {
     border-color: #f15a24;
     color: #f15a24;
+    transform: translateY(-1px);
+  }
+
+  button:active {
+    transform: translateY(0);
+  }
+
+  .quote-container {
+    margin-top: 16px;
+    background: #fafafa;
+    padding: 16px;
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-left: 3px solid #ddd;
   }
 
   #random {
-    margin-top: 14px;
-    color: #555;
-    min-height: 25px;
+    color: #444;
+    font-size: 15px;
+    word-break: break-word;
+    flex-grow: 1;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 14px;
+    background: #f15a24;
+    margin-left: 4px;
+    animation: blink 0.8s infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .btn-copy {
+    margin-top: 0;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    background: #ffffff;
+    color: #666;
+  }
+
+  .btn-copy:hover {
+    color: #f15a24;
+    border-color: #f15a24;
   }
 
   footer {
     padding: 45px 0 70px;
     color: #999;
     font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes coneWiggle {
+    0% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.1) rotate(-6deg); }
+    40% { transform: scale(1.1) rotate(6deg); }
+    60% { transform: scale(1.05) rotate(-3deg); }
+    80% { transform: scale(1.05) rotate(3deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  .wiggle-active {
+    animation: coneWiggle 0.5s ease-in-out !important;
   }
 
   @media (max-width: 500px) {
@@ -120,6 +271,12 @@
 
     header {
       padding-top: 60px;
+    }
+
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
     }
   }
 </style>
@@ -131,7 +288,7 @@
 
   <header>
     <h1 class="name">
-      <span class="orange">cone</span>.
+      <span class="orange" id="cone-logo" title="click cone">cone</span>.
     </h1>
 
     <p class="sub">
@@ -156,6 +313,13 @@
       <p>im cone. they/them.</p>
       <p>im a traffic cone.</p>
       <p>thats  basically it.</p>
+
+      <!-- Clean textual status indicators -->
+      <div class="status-grid">
+        <div class="status-tag">[status: <span class="highlight">rotting in off topic</span>]</div>
+        <div class="status-tag">[vibe: <span class="highlight">cone..</span>]</div>
+        <div class="status-tag">[threat level: <span id="status-threat" class="highlight">peaceful until i get run over by another dumb driver.. wait im a human oh shi</span>]</div>
+      </div>
     </div>
   </section>
 
@@ -164,7 +328,7 @@
     <h2>luca</h2>
 
     <p>my boyfriend.</p>
-    <p class="sub">hes so adorable <3 </p>
+    <p class="sub">hes so adorable &lt;3 </p>
   </section>
 
 
@@ -187,18 +351,23 @@
       give me quotes from cone NOW
     </button>
 
-    <div id="random"></div>
+    <div class="quote-container">
+      <div id="random">press button for cone wisdom</div>
+      <button class="btn-copy" id="btn-copy" onclick="copyQuote()">copy</button>
+    </div>
   </section>
 
 
   <footer>
-    cone © perchance (not the ai company)
+    <div>cone © perchance (not the ai company)</div>
+    <div style="font-size: 11px; color: #aaa;">vibe: operational</div>
   </footer>
 
 </div>
 
 
 <script>
+// Lowercase quote collection
 const things = [
   "we passed upon a lonely stairs",
   "this site deserves zero purpse it should sudo rm rf root now",
@@ -207,13 +376,112 @@ const things = [
   "horse alert",
   "i only think about himm",
   "you have curiosity, me too.",
-  "you alerted the cone"
+  "you alerted the cone",
+  "traffic rules do not apply to cone",
+  "no thoughts head empty just orange",
+  "behold a man (i am a plastic triangle)",
+  "brb standing in the middle of the road",
+  "cone approved",
+  "ipostasey pass me the orange juice",
+  "luca is the cutest human in existence",
+  "caution: cone ahead",
+  "who put me on this sidewalk",
+  "beep beep i am traffic",
+  "have you tried turning the cone off and on again",
+  "please do not run over the cone",
+  "error 404: brain cell not found",
+  "redirecting traffic to lucas heart",
+  "you may pass... after paying the cone toll",
+  "currently obstructing a busy intersection",
+  "construction site status: operational",
+  "living life one safety stripe at a time",
+  "i am standing here menacingly",
+  "im orange and nobody can stop me",
+  "honk if you like cones",
+  "100% high-density polyethylene perfection",
+  "geometry was invented because of me",
+  "avoiding potholes since day 1",
+  "my reflection is brighter than my future",
+  "do not kick the cone please it hurts my feelings",
+  "just a triangular boy living in an angular world"
 ];
 
+let lastIndex = -1;
+let typingTimeout = null;
+
 function randomThing() {
-  document.getElementById("random").textContent =
-    things[Math.floor(Math.random() * things.length)];
+  const elem = document.getElementById("random");
+  
+  let index;
+  do {
+    index = Math.floor(Math.random() * things.length);
+  } while (index === lastIndex && things.length > 1);
+  
+  lastIndex = index;
+  const selectedQuote = `"${things[index]}"`;
+
+  if (typingTimeout) clearTimeout(typingTimeout);
+  
+  elem.innerHTML = '<span class="typing-cursor"></span>';
+  let charIdx = 0;
+  
+  function typeChar() {
+    if (charIdx < selectedQuote.length) {
+      elem.innerHTML = selectedQuote.substring(0, charIdx + 1) + '<span class="typing-cursor"></span>';
+      charIdx++;
+      typingTimeout = setTimeout(typeChar, 18 + Math.random() * 12);
+    } else {
+      elem.innerHTML = selectedQuote;
+    }
+  }
+  
+  typeChar();
 }
+
+// Copy quote function
+function copyQuote() {
+  const text = document.getElementById("random").innerText;
+  if (!text || text === "press button for cone wisdom") return;
+
+  const btn = document.getElementById("btn-copy");
+
+  const input = document.createElement("textarea");
+  input.value = text;
+  document.body.appendChild(input);
+  input.select();
+  try {
+    document.execCommand("copy");
+    btn.textContent = "copied!";
+    btn.style.color = "#f15a24";
+    btn.style.borderColor = "#f15a24";
+    setTimeout(() => {
+      btn.textContent = "copy";
+      btn.style.color = "#666";
+      btn.style.borderColor = "#ddd";
+    }, 1500);
+  } catch (err) {
+    console.error("copy failed");
+  }
+  document.body.removeChild(input);
+}
+
+// Wiggle logo effect
+function alertCone() {
+  const logo = document.getElementById("cone-logo");
+  const threat = document.getElementById("status-threat");
+
+  logo.classList.remove("wiggle-active");
+  void logo.offsetWidth; // Force reflow
+  logo.classList.add("wiggle-active");
+
+  threat.textContent = "alerted";
+
+  setTimeout(() => {
+    threat.textContent = "peaceful";
+  }, 2000);
+}
+
+document.getElementById("cone-logo").addEventListener("click", alertCone);
 </script>
 
 </body>
